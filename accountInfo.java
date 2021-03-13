@@ -52,8 +52,13 @@ class accountInfo implements accountInter{
 		return success;
 	}
 
-	public void setBalance(double bal){
-		balance=bal;
+	public void setBalance(String way,double amount){
+		if(way=="SEND"){
+			balance-=amount;
+		}
+		else if(way=="RECIEVE"){
+			balance+=amount;
+		}
 	}
 
 	public void chkBalance(){
@@ -112,8 +117,8 @@ class accountInfo implements accountInter{
 	protected boolean chkLogin(long accNum,String pass){
 		int res=0;
 		boolean success=false;
-		res=(accNum==accountNumber)?1:0;
-		res=(chkPass(pass)==true)?1:0;
+		res+=(accNum==accountNumber)?1:0;
+		res+=(chkPass(pass)==true)?1:0;
 		if(res==2){
 			success=true;
 		}
@@ -121,9 +126,47 @@ class accountInfo implements accountInter{
 		return success;
 	}
 
+	protected int loginMenu(){
+		System.out.println("Display Information: Press 1");
+		System.out.println("Deposit Money: Press 2");
+		System.out.println("Withdraw Money: Press 3");
+		System.out.println("Transfer Money: Press 4");
+		System.out.println("Display Balance: Press 5");
+		System.out.println("Exit: Press 0");
+		Scanner in=new Scanner(System.in);
+		int input=in.nextInt();
+		return input;
+	}
+
 	protected void putInfo(){
 		System.out.println("Name: "+fname+" "+lname);
-		System.out.println("Age: "+age);
+		//System.out.println("Age: "+age);
 		chkBalance();
+	}
+
+	protected void deposit(){
+		Scanner in=new Scanner(System.in);
+		System.out.print("Enter Amount to deposit: ");
+		double amount=in.nextDouble();
+		setBalance("RECIEVE",amount);
+	}
+
+	protected void withdraw(){
+		Scanner in=new Scanner(System.in);
+		System.out.print("Enter Amount to withdraw: ");
+		double amount=in.nextDouble();
+		boolean success=chkAmount(amount);
+		if(success==true){
+			setBalance("SEND",amount);
+			System.out.println("Done!");
+		}
+	}
+
+	protected boolean chkAmount(double amount){
+		boolean success=true;
+		if(amount>=balance){
+			success=false;
+		}
+		return success;
 	}
 }

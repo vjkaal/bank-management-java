@@ -12,6 +12,6 @@ interface accountInter extends privateAccountInter{
 interface privateAccountInter{
 	void setPass(String pass);
 	boolean chkPass(String pass);
-	void setBalance(double bal);
+	void setBalance(String way,double amount);
 	void chkBalance();
 }

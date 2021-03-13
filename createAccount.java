@@ -5,6 +5,7 @@ class createAccount extends accountInfo implements printInterface{
 
 	createAccount(long i){
 		setAccNum(i);
+		System.out.println("Account Number: "+i);
 		getInfo();
 		setInitialBalance();
 	}
@@ -38,7 +39,7 @@ class createAccount extends accountInfo implements printInterface{
 	private void setInitialBalance(){
 		print("Enter Initial Amount: ");
 		double bal=in.nextDouble();
-		setBalance(bal);
+		setBalance("RECIEVE",bal);
 		//chkBalance();
 		super.accCreated();
 	}
