@@ -1,27 +1,31 @@
 import java.util.*;
 
-class menuBar implements printInterface{
-	LinkedList<accountInfo> accInfo=new LinkedList<accountInfo>();
+class start{
+	private static LinkedList<accountInfo> accInfo=new LinkedList<accountInfo>();
 	private static long i=10000;
 
-	enum menuSelection {
+	private static enum menuSelection {
 		EXIT,CREATEACCOUNT,LOGIN
 	}
 
-	public void selection(){
+	public static void main(String[] args){
+		selection();
+	}
+
+	public static void selection(){
 		switch(menu_bar()){
-			case EXIT: print("Exiting\n");break;
+			case EXIT: System.out.println("Exiting\n");break;
 			case CREATEACCOUNT: System.out.println("\f");createAccount(); break;
 			case LOGIN: System.out.println("\f");login();break;
 			default: break;
 		}
 	}
 
-	private menuSelection menu_bar(){
-		print("Menu bar: \n");
-		print("Create Account - Press 1\n");
-		print("Login to Existing account - Press 2\n");
-		print("Exit - Press 0\n");
+	private static menuSelection menu_bar(){
+		System.out.println("Menu bar: ");
+		System.out.println("Create Account - Press 1");
+		System.out.println("Login to Existing account - Press 2");
+		System.out.println("Exit - Press 0");
 		Scanner in=new Scanner(System.in);
 		int choice=in.nextInt();
 		menuSelection res=menuSelection.EXIT;
@@ -34,13 +38,13 @@ class menuBar implements printInterface{
 		return res;
 	}
 	
-	public void createAccount(){
+	public static void createAccount(){
 		accInfo.add(new createAccount(i));
 		i++;
 		selection();
 	}
 
-	public void login(){
+	public static void login(){
 		Scanner in=new Scanner(System.in);
 		System.out.print("Enter account Number: ");
 		long accNum=in.nextLong();
@@ -72,7 +76,7 @@ class menuBar implements printInterface{
 		selection();
 	}
 
-	private void transferMoney(int x,long acc1){
+	private static void transferMoney(int x,long acc1){
 		System.out.println("Your Account Number: "+acc1);
 		Scanner in=new Scanner(System.in);
 		System.out.print("Enter Beneficiary Account Number: ");
