@@ -1,6 +1,6 @@
 import java.util.*;
 
-class createAccount extends accountInfo implements printInterface{
+class createAccount extends accountInfo{
 	Scanner in=new Scanner(System.in);
 
 	createAccount(long i){
@@ -11,9 +11,9 @@ class createAccount extends accountInfo implements printInterface{
 	}
 
 	private void getInfo(){
-		print("Enter First Name: ");
+		System.out.print("Enter First Name: ");
 		String fname=in.nextLine();
-		print("Enter last Name: ");
+		System.out.print("Enter last Name: ");
 		String lname=in.nextLine();
 		setfName(fname);
 		setlName(lname);
@@ -21,7 +21,7 @@ class createAccount extends accountInfo implements printInterface{
 		if(fname.isEmpty()){print("null\n");}
 		else print("no\n"+getfName()+" ");
 		*/
-		print("Enter your Age: ");
+		System.out.print("Enter your Age: ");
 		byte age=in.nextByte();
 		in.nextLine();
 		setAge(age);
@@ -30,14 +30,14 @@ class createAccount extends accountInfo implements printInterface{
 	}
 
 	private void generatePass(){
-		print("Create a secure Password: ");
+		System.out.print("Create a secure Password: ");
 		String pass=in.nextLine();
 		//print(pass);
 		setPass(pass);
 	}
 
 	private void setInitialBalance(){
-		print("Enter Initial Amount: ");
+		System.out.print("Enter Initial Amount: ");
 		double bal=in.nextDouble();
 		setBalance("RECIEVE",bal);
 		//chkBalance();
