@@ -39,7 +39,7 @@ class createAccount extends accountInfo{
 	private void setInitialBalance(){
 		System.out.print("Enter Initial Amount: ");
 		double bal=in.nextDouble();
-		setBalance("RECIEVE",bal);
+		setBalance("RECEIVE",bal);
 		//chkBalance();
 		super.accCreated();
 	}

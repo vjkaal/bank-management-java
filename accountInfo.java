@@ -13,6 +13,7 @@ class accountInfo implements accountInter{
 		accountNumber=accNum;
 	}
 
+	@Override
 	public long getAccNum(){
 		return accountNumber;
 	}
@@ -21,6 +22,7 @@ class accountInfo implements accountInter{
 		age=Age;
 	}
 
+	@Override
 	public byte getAge(){
 		return age;
 	}
@@ -29,6 +31,7 @@ class accountInfo implements accountInter{
 		fname=fName;
 	}
 
+	@Override
 	public String getfName(){
 		return fname;
 	}
@@ -37,6 +40,7 @@ class accountInfo implements accountInter{
 		lname=lName;
 	}
 
+	@Override
 	public String getlName(){
 		return lname;
 	}
@@ -47,16 +51,14 @@ class accountInfo implements accountInter{
 	}
 
 	public boolean chkPass(String pass){
-		boolean success=false;
-		success=passOriginal.equals(pass);
-		return success;
+		return passOriginal.equals(pass);
 	}
 
 	public void setBalance(String way,double amount){
-		if(way=="SEND"){
+		if(way.equals("SEND")){
 			balance-=amount;
 		}
-		else if(way=="RECIEVE"){
+		else if(way.equals("RECIEVE")){
 			balance+=amount;
 		}
 	}
@@ -107,22 +109,18 @@ class accountInfo implements accountInter{
 				System.out.print("Please Put some Initial Balance: ");
 				balance=in.nextDouble();
 			}
-			chkpoint+=1;
 		}
-		else if(chkpoint==5){
+		else {
 			System.out.println("Account created successfully!");
 		}
 	}
 
 	protected boolean chkLogin(long accNum,String pass){
 		int res=0;
-		boolean success=false;
+		boolean success;
 		res+=(accNum==accountNumber)?1:0;
-		res+=(chkPass(pass)==true)?1:0;
-		if(res==2){
-			success=true;
-		}
-		else success=false;
+		res+=(chkPass(pass))?1:0;
+		success= res == 2;
 		return success;
 	}
 
@@ -134,8 +132,7 @@ class accountInfo implements accountInter{
 		System.out.println("Display Balance: Press 5");
 		System.out.println("Exit: Press 0");
 		Scanner in=new Scanner(System.in);
-		int input=in.nextInt();
-		return input;
+		return in.nextInt();
 	}
 
 	protected void putInfo(){
@@ -156,7 +153,7 @@ class accountInfo implements accountInter{
 		System.out.print("Enter Amount to withdraw: ");
 		double amount=in.nextDouble();
 		boolean success=chkAmount(amount);
-		if(success==true){
+		if(success){
 			setBalance("SEND",amount);
 			System.out.println("Done!");
 		}

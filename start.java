@@ -1,10 +1,10 @@
 import java.util.*;
 
 class start{
-	private static LinkedList<accountInfo> accInfo=new LinkedList<accountInfo>();
+	private static final LinkedList<accountInfo> accInfo= new LinkedList<>();
 	private static long i=10000;
 
-	private static enum menuSelection {
+	private enum menuSelection {
 		EXIT,CREATEACCOUNT,LOGIN
 	}
 
@@ -51,21 +51,21 @@ class start{
 		in.nextLine();
 		System.out.print("Enter password: ");
 		String pass=in.nextLine();
-		boolean success=true;
+		boolean success;
 		int x=(int)accNum;
 		x-=10000;
 		success=accInfo.get(x).chkLogin(accNum,pass);
-		if(success==true){
+		if(success){
 			int res=1;
 			while(res!=0){
 				res=accInfo.get(x).loginMenu();
-				switch(res){
-					case 1: accInfo.get(x).putInfo();break;
-					case 2: accInfo.get(x).deposit();break;
-					case 3: accInfo.get(x).withdraw();break;
-					case 4: transferMoney(x,accNum);break;
-					case 5: accInfo.get(x).chkBalance();break;
-					case 0: System.out.println("Exiting");break;
+				switch (res) {
+					case 1 -> accInfo.get(x).putInfo();
+					case 2 -> accInfo.get(x).deposit();
+					case 3 -> accInfo.get(x).withdraw();
+					case 4 -> transferMoney(x, accNum);
+					case 5 -> accInfo.get(x).chkBalance();
+					case 0 -> System.out.println("Exiting");
 				}
 			}		
 		}
@@ -85,7 +85,7 @@ class start{
 		y-=10000;
 		boolean success=false;
 		double amount=0;
-		while(success==false){
+		while(!success){
 			System.out.print("Enter amount to transfer: ");
 			amount=in.nextDouble();
 			success=accInfo.get(x).chkAmount(amount);
